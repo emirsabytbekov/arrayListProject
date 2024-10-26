@@ -16,23 +16,10 @@ public class Main {
 
         printGreeting();
 
-        for (int i = 0; i < arrayListSize; i++)
-        {
-            int element = 1 + rand.nextInt(7);
-
-            if (i == 0) arrayList.add(element);
-            else if (i > 0 && element == arrayList.get(i-1) ) i--;
-            else if (i > 0 && element != arrayList.get(i-1) )
-            {
-                if (i == 2 && element == arrayList.get(i-2) ) i--;
-                else arrayList.add(element);
-            }
-        }
+        hideTheBoxes(arrayListSize, rand, arrayList);
 
         for (int numberOfAttempts = 5; numberOfAttempts > 0; numberOfAttempts--)
         {
-
-
             System.out.println("\nPlease, enter three numbers: ");
 
             firstGuess = sc.nextInt();
@@ -46,22 +33,13 @@ public class Main {
                 break;
             }
 
-            rightGuessesNumber = rightGuessesNumber - rightGuessesNumber;
-
-            for (int i = 0; i < arrayListSize; i++){
-                if (firstGuess == arrayList.get(i)) rightGuessesNumber++;
-            }
-            for (int i = 0; i < arrayListSize; i++){
-                if (secondGuess == arrayList.get(i)) rightGuessesNumber++;
-            }
-            for (int i = 0; i < arrayListSize; i++){
-                if (thirdGuess == arrayList.get(i)) rightGuessesNumber++;
-            }
+            rightGuessesNumber = resetRightGuessesNumber();
+            rightGuessesNumber = countRightGuesses(arrayListSize, firstGuess, secondGuess, thirdGuess, arrayList, rightGuessesNumber);
 
             if (rightGuessesNumber == 1) System.out.println("You've found " + rightGuessesNumber + " box");
             else if (rightGuessesNumber == 3)
             {
-                System.out.println("YAAAAAY! YOU HAVE SUCCESSFULLY FOUND ALL THE BOXES");
+                System.out.println("HURRAAAAAY! YOU HAVE SUCCESSFULLY FOUND ALL THE BOXES");
                 break;
             }
             else System.out.println("You've found " + rightGuessesNumber + " boxes");
@@ -69,7 +47,8 @@ public class Main {
 
         if (rightGuessesNumber != 3) System.out.println("\nALERT! YOU HAVE BEEN NOTICED!\nLegs have eyes...");
 
-        System.out.println(arrayList);
+        //added next line just for fun
+        System.out.println("Their places were: " + arrayList);
 
     }
 
@@ -108,6 +87,41 @@ public class Main {
     {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static void hideTheBoxes (int arrayListSize, Random rand, ArrayList<Integer> arrayList)
+    {
+        for (int i = 0; i < arrayListSize; i++)
+        {
+            int element = 1 + rand.nextInt(7);
+
+            if (i == 0) arrayList.add(element);
+            else if (i > 0 && element == arrayList.get(i-1) ) i--;
+            else if (i > 0 && element != arrayList.get(i-1) )
+            {
+                if (i == 2 && element == arrayList.get(i-2) ) i--;
+                else arrayList.add(element);
+            }
+        }
+    }
+
+    public static int countRightGuesses(int arrayListSize, int firstGuess, int secondGuess, int thirdGuess, ArrayList<Integer> arrayList, int rightGuessesNumber)
+    {
+        for (int i = 0; i < arrayListSize; i++){
+            if (firstGuess == arrayList.get(i)) rightGuessesNumber++;
+        }
+        for (int i = 0; i < arrayListSize; i++){
+            if (secondGuess == arrayList.get(i)) rightGuessesNumber++;
+        }
+        for (int i = 0; i < arrayListSize; i++){
+            if (thirdGuess == arrayList.get(i)) rightGuessesNumber++;
+        }
+        return rightGuessesNumber;
+    }
+
+    public static int resetRightGuessesNumber()
+    {
+        return 0;
     }
 
 }
