@@ -29,7 +29,7 @@ public class Main {
             }
         }
 
-        for (int numberOfAttempts = 50; numberOfAttempts > 0; numberOfAttempts--)
+        for (int numberOfAttempts = 5; numberOfAttempts > 0; numberOfAttempts--)
         {
 
 
@@ -38,6 +38,12 @@ public class Main {
             firstGuess = sc.nextInt();
             secondGuess = sc.nextInt();
             thirdGuess = sc.nextInt();
+
+            if (firstGuess == secondGuess || firstGuess == thirdGuess || secondGuess == thirdGuess)
+            {
+                System.out.println("You must not check the same spot two times in the same attempt, it attracts too much attention!");
+                break;
+            }
 
             rightGuessesNumber = rightGuessesNumber - rightGuessesNumber;
 
