@@ -28,9 +28,15 @@ public class Main {
 
             rightGuessesNumber = rightGuessesNumber - rightGuessesNumber;
 
-            if (firstGuess == arrayList.get(0)) rightGuessesNumber++;
-            if (secondGuess == arrayList.get(1)) rightGuessesNumber++;
-            if (thirdGuess == arrayList.get(2)) rightGuessesNumber++;
+            for (int i = 0; i < arrayListSize; i++){
+                if (firstGuess == arrayList.get(i)) rightGuessesNumber++;
+            }
+            for (int i = 0; i < arrayListSize; i++){
+                if (secondGuess == arrayList.get(i)) rightGuessesNumber++;
+            }
+            for (int i = 0; i < arrayListSize; i++){
+                if (thirdGuess == arrayList.get(i)) rightGuessesNumber++;
+            }
 
             if (rightGuessesNumber == 1) System.out.println("You've found " + rightGuessesNumber + " box");
             else if (rightGuessesNumber == 3)
