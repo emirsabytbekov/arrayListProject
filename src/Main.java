@@ -14,6 +14,8 @@ public class Main {
         int secondGuess;
         int thirdGuess;
 
+        printGreeting();
+
         for (int numberOfAttempts = 5; numberOfAttempts > 0; numberOfAttempts--)
         {
             for (int i = 0; i < arrayListSize; i++)
@@ -21,6 +23,8 @@ public class Main {
                 int element = 1 + rand.nextInt(7);
                 arrayList.add(element);
             }
+
+            System.out.println("\nPlease, enter three numbers: ");
 
             firstGuess = sc.nextInt();
             secondGuess = sc.nextInt();
@@ -51,4 +55,14 @@ public class Main {
 
 
     }
+    public static void printGreeting() {
+        System.out.println("There are 3 boxes that are hidden in this desert.");
+        System.out.println("They may be in each kilometer from 1 to 7 (inclusive).");
+        System.out.println("You have only 5 attempts to guess the place of each box,");
+        System.out.println("Otherwise boxes will be replaced by moving tentacles.");
+        System.out.println("Each attempt must include three numbers, divided by the space.");
+        System.out.println("After each attempt program will display number of found boxes.");
+        System.out.println("Get ready, program launches!");
+    }
+
 }
