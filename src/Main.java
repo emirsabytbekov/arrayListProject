@@ -16,13 +16,22 @@ public class Main {
 
         printGreeting();
 
-        for (int numberOfAttempts = 5; numberOfAttempts > 0; numberOfAttempts--)
+        for (int i = 0; i < arrayListSize; i++)
         {
-            for (int i = 0; i < arrayListSize; i++)
+            int element = 1 + rand.nextInt(7);
+
+            if (i == 0) arrayList.add(element);
+            else if (i > 0 && element == arrayList.get(i-1) ) i--;
+            else if (i > 0 && element != arrayList.get(i-1) )
             {
-                int element = 1 + rand.nextInt(7);
-                arrayList.add(element);
+                if (i == 2 && element == arrayList.get(i-2) ) i--;
+                else arrayList.add(element);
             }
+        }
+
+        for (int numberOfAttempts = 50; numberOfAttempts > 0; numberOfAttempts--)
+        {
+
 
             System.out.println("\nPlease, enter three numbers: ");
 
@@ -53,6 +62,7 @@ public class Main {
 
         if (rightGuessesNumber != 3) System.out.println("\nALERT! YOU HAVE BEEN NOTICED!\nLegs have eyes...");
 
+        System.out.println(arrayList);
 
     }
     public static void printGreeting() {
