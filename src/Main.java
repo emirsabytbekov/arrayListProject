@@ -42,6 +42,7 @@ public class Main {
             if (firstGuess == secondGuess || firstGuess == thirdGuess || secondGuess == thirdGuess)
             {
                 System.out.println("You must not check the same spot two times in the same attempt, it attracts too much attention!");
+                wait(1000);
                 break;
             }
 
@@ -71,14 +72,42 @@ public class Main {
         System.out.println(arrayList);
 
     }
+
+
     public static void printGreeting() {
+        wait(1000);
         System.out.println("There are 3 boxes that are hidden in this desert.");
+        wait(2500);
         System.out.println("They may be in each kilometer from 1 to 7 (inclusive).");
+        wait(2500);
         System.out.println("You have only 5 attempts to guess the place of each box,");
+        wait(2500);
         System.out.println("Otherwise boxes will be replaced by moving tentacles.");
+        wait(2500);
         System.out.println("Each attempt must include three numbers, divided by the space.");
+        wait(2500);
         System.out.println("After each attempt program will display number of found boxes.");
+        wait(2500);
         System.out.println("Get ready, program launches!");
+        wait(4500);
+
+        clearScreen();
+    }
+
+    public static void wait (int ms)
+    {
+        try {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public static void clearScreen()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 }
